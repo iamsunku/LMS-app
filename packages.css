@@ -1,0 +1,239 @@
+/* Packages Page Specific Styles */
+
+.packages-hero {
+    padding: 80px 0 60px;
+    background: linear-gradient(135deg, #003366 0%, #0066cc 100%);
+    text-align: center;
+    position: relative;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.title-our {
+    color: #ffffff;
+}
+
+.title-packages {
+    color: #ff9900;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 400;
+}
+
+.packages-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.package-card {
+    background: #fff8f0;
+    /* Light orange background request */
+    border-radius: 12px;
+    padding: 25px 20px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid #ffecd9;
+    /* Slightly darker orange border */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(255, 153, 0, 0.15);
+    border-color: #ff9900;
+}
+
+.package-number {
+    display: none;
+    /* Ensure hidden as requested previously */
+}
+
+.package-img-container {
+    height: 220px;
+    /* Increased size as requested */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    background: transparent;
+    /* Removed grey background */
+    border-radius: 8px;
+    padding: 0;
+    /* Maximize space */
+}
+
+.package-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    /* 'Multiply' makes white transparent. We add contrast/brightness tweaks to ensure non-white pixels pop over the orange background */
+    mix-blend-mode: multiply;
+    filter: contrast(1.1) brightness(0.98);
+}
+
+.package-icon-large {
+    font-size: 90px;
+    background: linear-gradient(135deg, #003366 30%, #ff9900 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.package-card:hover .package-icon-large {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.package-card:hover .package-image {
+    transform: scale(1.05);
+}
+
+.package-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #003366;
+    padding-right: 0;
+    line-height: 1.3;
+}
+
+.package-description {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    /* Pushes button down */
+}
+
+.package-features {
+    margin: 0 0 25px 0;
+    padding: 0;
+    flex-grow: 0;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.feature-icon {
+    width: 20px;
+    height: 20px;
+    background: #003366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.package-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background: #003366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+    margin-top: auto;
+}
+
+.package-btn:hover {
+    background: #0066cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
+}
+
+/* Featured Package Highlight */
+.genius-package {
+    border-color: #ff9900;
+    position: relative;
+}
+
+.genius-package::before {
+    content: 'POPULAR';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff9900;
+    color: white;
+    padding: 4px 16px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.genius-package .package-number {
+    background: #fff5e6;
+    color: #ff9900;
+}
+
+.genius-package .package-title {
+    color: #ff9900;
+}
+
+.genius-package .feature-icon {
+    background: #ff9900;
+}
+
+.genius-package .package-btn {
+    background: #ff9900;
+}
+
+.genius-package .package-btn:hover {
+    background: #cc7a00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .packages-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-title {
+        font-size: 2.2rem;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+    }
+
+    .package-title {
+        font-size: 1.3rem;
+    }
+}
