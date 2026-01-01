@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Explorer - EduAiTutors</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="guest.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Guest Navbar -->
+    <nav class="guest-nav">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="assets/logo-eduaitutors.png" alt="EduAiTutors Logo">
+            </div>
+            <div class="nav-actions">
+                <span class="guest-tag">GUEST MODE</span>
+                <a href="auth.html" class="btn-login-small">Login / Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="guest-content">
+        <!-- Explorer Hero -->
+        <section class="explorer-hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-text">
+                        <span class="badge">EXPLORE OUR ECOSYSTEM</span>
+                        <h1>The Future of <span class="gradient-text">Personalized Learning</span></h1>
+                        <p>Experience how Academic Intelligence (AI) adapts to your pace, board, and goals. From Grade 1
+                            to Competitive Exams, we provide more than just videos.</p>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <h3>12+</h3>
+                                <span>Grades</span>
+                            </div>
+                            <div class="stat-item">
+                                <h3>50+</h3>
+                                <span>Subjects</span>
+                            </div>
+                            <div class="stat-item">
+                                <h3>500k+</h3>
+                                <span>Resources</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-video-box">
+                        <div class="video-overlay">
+                            <i class="fa-solid fa-play"></i>
+                            <span>Watch Platform Tour</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=800&q=80"
+                            alt="Platform Preview">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offering Section -->
+        <section class="offering-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Everything We Offer</h2>
+                    <p>A comprehensive education suite designed for the modern student.</p>
+                </div>
+
+                <div class="offer-tabs">
+                    <div class="offer-tab active" data-target="school">School (Grades 1-12)</div>
+                    <div class="offer-tab" data-target="exams">Competitive Exams</div>
+                </div>
+
+                <div class="offer-grid active" id="school-grid">
+                    <div class="offer-card">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <h3>All Major Boards</h3>
+                        <p>CBSE, ICSE, IGCSE, IB, and State Boards coverage.</p>
+                    </div>
+                    <div class="offer-card">
+                        <i class="fa-solid fa-microchip"></i>
+                        <h3>AI Generated Videos</h3>
+                        <p>Dynamic visual explanations generated to match your learning style.</p>
+                    </div>
+                    <div class="offer-card">
+                        <i class="fa-solid fa-bolt"></i>
+                        <h3>Package Switching</h3>
+                        <p>Easily upgrade or switch between boards and grades anytime.</p>
+                    </div>
+                    <div class="offer-card">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                        <h3>Subject Mastery</h3>
+                        <p>Chapter-wise video, resources, notes, and module exams.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Comparison -->
+        <section class="compare-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why EduAiTutors Wins?</h2>
+                    <p>Compare our advanced features with traditional platforms.</p>
+                </div>
+
+                <div class="compare-table-wrapper">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Features</th>
+                                <th class="highlight-col">EduAiTutors</th>
+                                <th>Others</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AI-Generated Explainer Videos</td>
+                                <td><i class="fa-solid fa-check-circle green"></i></td>
+                                <td><i class="fa-solid fa-times-circle red"></i></td>
+                            </tr>
+                            <tr>
+                                <td>24/7 AI Mentor Chat</td>
+                                <td><i class="fa-solid fa-check-circle green"></i></td>
+                                <td><i class="fa-solid fa-times-circle red"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Direct Live Support with Admin</td>
+                                <td><i class="fa-solid fa-check-circle green"></i></td>
+                                <td><i class="fa-solid fa-minus gray"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Flexible Package Switch Option</td>
+                                <td><i class="fa-solid fa-check-circle green"></i></td>
+                                <td><i class="fa-solid fa-times-circle red"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Interactive Mock & Final Exams</td>
+                                <td><i class="fa-solid fa-check-circle green"></i></td>
+                                <td><i class="fa-solid fa-check-circle green"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Advanced Resource Library</td>
+                                <td><i class="fa-solid fa-check-circle green"></i></td>
+                                <td><i class="fa-solid fa-minus gray"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Features Grid -->
+        <section class="advanced-features">
+            <div class="container">
+                <div class="feature-showcase">
+                    <div class="feature-item">
+                        <div class="f-icon"><i class="fa-solid fa-comments"></i></div>
+                        <div class="f-text">
+                            <h3>AI Chat with Mentor</h3>
+                            <p>Instant doubt clearing using our advanced Academic Intelligence engine.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="f-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                        <div class="f-text">
+                            <h3>Live Mentorship</h3>
+                            <p>Direct live classes with subject matter experts to polish your concepts.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="f-icon"><i class="fa-solid fa-trophy"></i></div>
+                        <div class="f-text">
+                            <h3>Competitive Mastery</h3>
+                            <p>JEE, NEET, and CUET specialized modules with historical data analysis.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="f-icon"><i class="fa-solid fa-headset"></i></div>
+                        <div class="f-text">
+                            <h3>Help & Support</h3>
+                            <p>Dedicated admin support line for all your technical and billing queries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="guest-cta">
+            <div class="container">
+                <div class="cta-box">
+                    <h2>Ready to unlock your full potential?</h2>
+                    <p>Start your customized learning journey today.</p>
+                    <a href="auth.html" class="btn-primary">Get Started Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 EduAiTutors. Explore Mode.</p>
+        </div>
+    </footer>
+    <script src="chatbot.js"></script>
+</body>
+
+</html>

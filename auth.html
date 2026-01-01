@@ -7,6 +7,7 @@
     <title>Login / Register - EduAiTutors</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="chatbot.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -24,7 +25,19 @@
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">HOME</a></li>
                     <li><a href="index.html#about" class="nav-link">ABOUT</a></li>
-                    <li><a href="packages.html" class="nav-link">PACKAGE</a></li>
+                    <li class="dropdown">
+                        <a href="packages.html" class="nav-link">PACKAGES <i class="fa-solid fa-chevron-down"
+                                style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="packages.html#school-packages" class="dropdown-item">Grade 1 to Grade 12</a>
+                            </li>
+                            <li><a href="packages.html#competitive-exams" class="dropdown-item">Competitive Exams</a>
+                            </li>
+                            <li><a href="packages.html#olympiad" class="dropdown-item">Olympiads</a></li>
+                            <li><a href="packages.html#live-classes" class="dropdown-item">Live Classes</a></li>
+                            <li><a href="packages.html#coding" class="dropdown-item">Coding & AI</a></li>
+                        </ul>
+                    </li>
                     <li><a href="auth.html" class="nav-link btn-login active">LOGIN/REGISTER</a></li>
                 </ul>
             </nav>
@@ -32,184 +45,241 @@
     </header>
 
     <main class="auth-main">
-        <div class="auth-container">
-            <div class="auth-box">
-                <div class="auth-tabs">
-                    <button class="auth-tab active" data-tab="login">Login</button>
-                    <button class="auth-tab" data-tab="register">Register</button>
-                </div>
+        <div class="auth-split-container">
+            <!-- Left Panel: Information & Branding -->
+            <div class="auth-info-panel">
+                <div class="info-content">
+                    <h1 class="info-logo">EduAiTutors</h1>
+                    <p class="info-description">
+                        Edu - <span class="highlight">Academic Intelligence</span> Tutors We understand that every
+                        student has a unique learning journey, potential, and pace. Our one-of-a-kind Learning
+                        Management System (LMS) is built to adapt to your specific needs, ensuring targeted support and
+                        optimal growth.
+                    </p>
 
-                <!-- Login Form -->
-                <div class="auth-form-container active" id="login-form">
-                    <h2 class="auth-title">Welcome Back!</h2>
-                    <p class="auth-subtitle">Login to continue your learning journey</p>
+                    <div class="quote-container" id="dynamic-quote">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <p class="quote-text">The beautiful thing about learning is that no one can take it away from
+                            you.</p>
+                        <span class="quote-author">— B.B. King</span>
+                    </div>
 
-                    <form class="auth-form">
-                        <!-- User Type Selection -->
-                        <div class="user-type-selection">
-                            <label class="user-type-option">
-                                <input type="radio" name="user-type" value="user" checked>
-                                <span class="user-type-label">User</span>
-                            </label>
-                            <label class="user-type-option">
-                                <input type="radio" name="user-type" value="parent">
-                                <span class="user-type-label">Parent</span>
-                            </label>
+                    <div class="download-section">
+                        <h3>Download Our App</h3>
+                        <div class="app-buttons">
+                            <a href="#" class="app-btn">
+                                <div class="app-btn-icon"><i class="fa-brands fa-google-play"></i></div>
+                                <div class="app-btn-text">
+                                    <small>GET IT ON</small>
+                                    <span>Google Play</span>
+                                </div>
+                            </a>
+                            <a href="#" class="app-btn">
+                                <div class="app-btn-icon"><i class="fa-brands fa-apple"></i></div>
+                                <div class="app-btn-text">
+                                    <small>DOWNLOAD ON THE</small>
+                                    <span>App Store</span>
+                                </div>
+                            </a>
                         </div>
-
-                        <div class="form-group">
-                            <label for="login-email" id="email-label">Email Address</label>
-                            <input type="text" id="login-email" placeholder="your@email.com" required>
-                            <small class="field-hint" id="email-hint" style="display: none;">Enter the User ID sent to
-                                your email (format: PAR followed by numbers)</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="login-password">Password</label>
-                            <input type="password" id="login-password" placeholder="Enter your password" required>
-                        </div>
-
-                        <div class="form-options">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="remember-me">
-                                <span>Remember me</span>
-                            </label>
-                            <a href="#" class="forgot-link">Forgot password?</a>
-                        </div>
-
-                        <button type="submit" class="auth-btn">Sign In</button>
-
-                        <button type="button" class="guest-btn">Continue as a guest</button>
-                    </form>
-
-                    <div class="register-prompt">
-                        <p>New to EduAITutors? <a href="#" class="register-link" data-switch="register">Register as a
-                                student</a> to get started!</p>
                     </div>
                 </div>
 
-                <!-- Register Form -->
-                <div class="auth-form-container" id="register-form">
-                    <h2 class="auth-title">Student Registration</h2>
-                    <p class="auth-subtitle">Create your account to get started</p>
+                <!-- Animated Background Elements -->
+                <div class="bg-shape shape-1"></div>
+                <div class="bg-shape shape-2"></div>
+                <div class="bg-dots"></div>
+            </div>
 
-                    <form class="auth-form register-form">
-                        <!-- Personal Information -->
-                        <div class="form-section">
-                            <h3 class="section-heading">Personal Information</h3>
+            <!-- Right Panel: Auth Box -->
+            <div class="auth-form-panel">
+                <div class="auth-box">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" data-tab="login">Login</button>
+                        <button class="auth-tab" data-tab="register">Register</button>
+                    </div>
 
-                            <div class="form-group">
-                                <label for="register-name">Full Name <span class="required">*</span></label>
-                                <input type="text" id="register-name" placeholder="John Doe" required>
+                    <!-- Login Form -->
+                    <div class="auth-form-container active" id="login-form">
+                        <h2 class="auth-title">Welcome Back!</h2>
+                        <p class="auth-subtitle">Login to continue your learning journey</p>
+
+                        <form class="auth-form">
+                            <!-- User Type Toggle -->
+                            <div class="auth-toggle-group">
+                                <input type="radio" name="user-type" value="user" id="type-user" checked>
+                                <label for="type-user" class="toggle-btn">User</label>
+
+                                <input type="radio" name="user-type" value="parent" id="type-parent">
+                                <label for="type-parent" class="toggle-btn">Parent</label>
+
+                                <div class="toggle-slider"></div>
                             </div>
 
                             <div class="form-group">
-                                <label for="register-email">Email ID (Student's or Parent's) <span
-                                        class="required">*</span></label>
-                                <input type="email" id="register-email" placeholder="your@email.com" required>
+                                <label for="login-email" id="email-label">Email Address</label>
+                                <input type="text" id="login-email" placeholder="your@email.com" required>
+                                <small class="field-hint" id="email-hint" style="display: none;">Enter the User ID sent
+                                    to your email (format: PAR followed by numbers)</small>
                             </div>
 
                             <div class="form-group">
-                                <label for="register-phone">Phone Number <span class="required">*</span></label>
-                                <input type="tel" id="register-phone" placeholder="+91 1234567890" required>
+                                <label for="login-password">Password</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="login-password" placeholder="Enter your password"
+                                        required>
+                                </div>
                             </div>
+
+                            <div class="form-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="remember-me">
+                                    <span>Remember me</span>
+                                </label>
+                                <a href="#" class="forgot-link">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" class="auth-btn btn-primary">Sign In</button>
+                            <button type="button" class="auth-btn btn-outline">Continue as a guest</button>
+                        </form>
+
+                        <div class="register-prompt">
+                            <p>New to EduAiTutors? <a href="#" class="register-link" data-switch="register">Register as
+                                    a student</a> to get started!</p>
                         </div>
+                    </div>
 
-                        <!-- Academic Information -->
-                        <div class="form-section">
-                            <h3 class="section-heading">Academic Information</h3>
+                    <!-- Register Form -->
+                    <div class="auth-form-container" id="register-form">
+                        <h2 class="auth-title">Student Registration</h2>
+                        <p class="auth-subtitle">Create your account to get started</p>
 
-                            <div class="form-group">
-                                <label for="register-board">Board <span class="required">*</span></label>
-                                <select id="register-board" required>
-                                    <option value="">Select Board</option>
-                                    <option value="cbse">CBSE</option>
-                                    <option value="icse">ICSE</option>
-                                    <option value="state">State Board</option>
-                                    <option value="igcse">IGCSE</option>
-                                    <option value="ib">IB</option>
-                                </select>
+                        <form class="auth-form register-form">
+                            <!-- Personal Information -->
+                            <div class="form-section">
+                                <h3 class="section-heading">Personal Information</h3>
+
+                                <div class="form-group">
+                                    <label for="register-name">Full Name <span class="required">*</span></label>
+                                    <input type="text" id="register-name" placeholder="John Doe" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="register-email">Email ID (Student's or Parent's) <span
+                                            class="required">*</span></label>
+                                    <input type="email" id="register-email" placeholder="your@email.com" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="register-phone">Phone Number <span class="required">*</span></label>
+                                    <input type="tel" id="register-phone" placeholder="+91 1234567890" required>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="register-grade">Grade <span class="required">*</span></label>
-                                <select id="register-grade" required>
-                                    <option value="">Select Grade</option>
-                                    <option value="1">Grade 1</option>
-                                    <option value="2">Grade 2</option>
-                                    <option value="3">Grade 3</option>
-                                    <option value="4">Grade 4</option>
-                                    <option value="5">Grade 5</option>
-                                    <option value="6">Grade 6</option>
-                                    <option value="7">Grade 7</option>
-                                    <option value="8">Grade 8</option>
-                                    <option value="9">Grade 9</option>
-                                    <option value="10">Grade 10</option>
-                                    <option value="11">Grade 11</option>
-                                    <option value="12">Grade 12</option>
-                                </select>
+                            <!-- Academic Information -->
+                            <div class="form-section">
+                                <h3 class="section-heading">Academic Information</h3>
+
+                                <div class="form-group">
+                                    <label for="register-board">Board <span class="required">*</span></label>
+                                    <select id="register-board" required>
+                                        <option value="">Select Board</option>
+                                        <option value="cbse">CBSE</option>
+                                        <option value="icse">ICSE</option>
+                                        <option value="state">State Board</option>
+                                        <option value="igcse">IGCSE</option>
+                                        <option value="ib">IB</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="register-grade">Grade <span class="required">*</span></label>
+                                    <select id="register-grade" required>
+                                        <option value="">Select Grade</option>
+                                        <option value="1">Grade 1</option>
+                                        <option value="2">Grade 2</option>
+                                        <option value="3">Grade 3</option>
+                                        <option value="4">Grade 4</option>
+                                        <option value="5">Grade 5</option>
+                                        <option value="6">Grade 6</option>
+                                        <option value="7">Grade 7</option>
+                                        <option value="8">Grade 8</option>
+                                        <option value="9">Grade 9</option>
+                                        <option value="10">Grade 10</option>
+                                        <option value="11">Grade 11</option>
+                                        <option value="12">Grade 12</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="register-school">Student's School Name <span
+                                            class="required">*</span></label>
+                                    <input type="text" id="register-school" placeholder="Enter your school's name"
+                                        required>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="register-school">Student's School Name <span
-                                        class="required">*</span></label>
-                                <input type="text" id="register-school" placeholder="Enter your school's name" required>
+                            <!-- Location Information -->
+                            <div class="form-section">
+                                <h3 class="section-heading">Location Information</h3>
+
+                                <div class="form-group">
+                                    <label for="register-state">State <span class="required">*</span></label>
+                                    <select id="register-state" required>
+                                        <option value="">Select State</option>
+                                        <option value="andhra-pradesh">Andhra Pradesh</option>
+                                        <option value="karnataka">Karnataka</option>
+                                        <option value="kerala">Kerala</option>
+                                        <option value="tamil-nadu">Tamil Nadu</option>
+                                        <option value="telangana">Telangana</option>
+                                        <option value="maharashtra">Maharashtra</option>
+                                        <option value="delhi">Delhi</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="register-city">City <span class="required">*</span></label>
+                                    <select id="register-city" required disabled>
+                                        <option value="">Select State first</option>
+                                    </select>
+                                </div>
                             </div>
+
+                            <!-- Account Security -->
+                            <div class="form-section">
+                                <h3 class="section-heading">Account Security</h3>
+
+                                <div class="form-group">
+                                    <label for="register-password">Password <span class="required">*</span></label>
+                                    <input type="password" id="register-password" placeholder="••••••••" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="register-confirm-password">Confirm Password <span
+                                            class="required">*</span></label>
+                                    <input type="password" id="register-confirm-password" placeholder="••••••••"
+                                        required>
+                                </div>
+                                <div class="form-options">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="terms" required>
+                                        <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="auth-btn btn-primary">Create Account</button>
+                        </form>
+
+                        <div class="register-prompt">
+                            <p>Already have an account? <a href="#" class="register-link" data-switch="login">Sign
+                                    in</a>
+                            </p>
                         </div>
-
-                        <!-- Location Information -->
-                        <div class="form-section">
-                            <h3 class="section-heading">Location Information</h3>
-
-                            <div class="form-group">
-                                <label for="register-state">State <span class="required">*</span></label>
-                                <select id="register-state" required>
-                                    <option value="">Select State</option>
-                                    <option value="andhra-pradesh">Andhra Pradesh</option>
-                                    <option value="karnataka">Karnataka</option>
-                                    <option value="kerala">Kerala</option>
-                                    <option value="tamil-nadu">Tamil Nadu</option>
-                                    <option value="telangana">Telangana</option>
-                                    <option value="maharashtra">Maharashtra</option>
-                                    <option value="delhi">Delhi</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="register-city">City <span class="required">*</span></label>
-                                <select id="register-city" required disabled>
-                                    <option value="">Select State first</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Account Security -->
-                        <div class="form-section">
-                            <h3 class="section-heading">Account Security</h3>
-
-                            <div class="form-group">
-                                <label for="register-password">Password <span class="required">*</span></label>
-                                <input type="password" id="register-password" placeholder="••••••••" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="register-confirm-password">Confirm Password <span
-                                        class="required">*</span></label>
-                                <input type="password" id="register-confirm-password" placeholder="••••••••" required>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="auth-btn">Create Account</button>
-                    </form>
-
-                    <div class="register-prompt">
-                        <p>Already have an account? <a href="#" class="register-link" data-switch="login">Sign in</a>
-                        </p>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 
     <footer class="footer">
@@ -275,6 +345,7 @@
     </footer>
 
     <script src="auth.js"></script>
+    <script src="chatbot.js"></script>
 </body>
 
 </html>
