@@ -139,6 +139,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('purchased-package-title').textContent = `${modal.dataset.package} Dashboard`;
         document.getElementById('student-plan-info').textContent = `${document.getElementById('board-select').value} | Grade ${gradeSelect.value}`;
+
+        // Setup toggle
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        const dashboardContainer = document.querySelector('.dashboard-container');
+        if (toggleBtn) {
+            toggleBtn.onclick = () => {
+                dashboardContainer.classList.toggle('sidebar-collapsed');
+            };
+        }
+
+        // Ensure sidebar is visible on start
+        dashboardContainer.classList.remove('sidebar-collapsed');
+
         switchSubject(subjects[0], list.firstChild);
     }
 
@@ -151,37 +164,145 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.subject-nav-item').forEach(el => el.classList.remove('active'));
         element.classList.add('active');
 
-        document.getElementById('active-content-title').innerHTML = `
-            <h3 style="color: #003366; font-size: 1.5rem;">${subjectName} - Chapter ${userProgress[subjectName].currentChapter}: Introduction</h3>
-        `;
+        const titleContainer = document.getElementById('active-content-title');
+        const h3 = titleContainer.querySelector('h3');
+        if (h3) {
+            h3.textContent = `${subjectName} - Chapter ${userProgress[subjectName].currentChapter}: Introduction`;
+        }
+
+        // Populate Curriculum (Chapters) list
+        const curriculumList = document.getElementById('curriculum-list');
+        if (curriculumList) {
+            curriculumList.innerHTML = '';
+            const chapters = [
+                { name: 'Introduction', locked: false },
+                { name: 'Core Principles', locked: userProgress[subjectName].completedChapters < 1 },
+                { name: 'Practical Examples', locked: true },
+                { name: 'Final Assessment', locked: true }
+            ];
+
+            chapters.forEach((ch, i) => {
+                const li = document.createElement('li');
+                li.className = `chapter-item ${i === 0 ? 'active' : ''} ${ch.locked ? 'locked' : ''}`;
+                li.innerHTML = `<i class="fa-solid fa-${ch.locked ? 'lock' : 'circle-play'}"></i> <span>${ch.name}</span>`;
+                curriculumList.appendChild(li);
+            });
+        }
 
         // Reset Video State for new Chapter/Subject
         isVideoFinished = false;
         updateQuizLockState();
 
+        // Reset auto-scroll items
+        const hlItems = document.querySelectorAll('.v-content-item');
+        hlItems.forEach(item => item.classList.remove('active'));
+        if (hlItems.length) hlItems[0].classList.add('active');
+
         // Tab to Video
         document.querySelector('[data-tab="video"]').click();
 
-        // Simulate video watch after 3 seconds for demo
-        setTimeout(() => {
-            isVideoFinished = true;
-            updateQuizLockState();
-            console.log("Video marked as finished.");
-        }, 3000);
+        // Play Button / Video Placeholder logic
+        const video = document.getElementById('main-course-video');
+        const videoOverlay = document.getElementById('video-overlay');
+        const dashboardContainer = document.querySelector('.dashboard-container');
+
+        if (video && videoOverlay) {
+            videoOverlay.onclick = () => {
+                dashboardContainer.classList.add('watching-video');
+                videoOverlay.style.display = 'none'; // Hide overlay on play
+
+                video.play().then(() => {
+                    console.log("Video playing");
+                }).catch(err => {
+                    console.warn("Video play failed, fallback to simulation", err);
+                    simulateVideoProgress();
+                });
+            };
+
+            video.ontimeupdate = () => {
+                handleVideoProgress(video.currentTime, video.duration);
+            };
+
+            video.onended = () => {
+                isVideoFinished = true;
+                updateQuizLockState();
+
+                setTimeout(() => {
+                    dashboardContainer.classList.remove('watching-video');
+                    showQuizInPlayer();
+                }, 1000);
+            };
+        }
+    }
+
+    function handleVideoProgress(current, duration) {
+        const items = document.querySelectorAll('.v-content-item');
+        if (!items.length) return;
+
+        const segmentDuration = duration / items.length;
+        const currentHL = Math.floor(current / segmentDuration);
+
+        items.forEach((item, index) => {
+            if (index === currentHL) {
+                if (!item.classList.contains('active')) {
+                    item.classList.add('active');
+                    item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+
+    function simulateVideoProgress() {
+        const items = document.querySelectorAll('.v-content-item');
+        const dashboardContainer = document.querySelector('.dashboard-container');
+        let currentHL = 0;
+
+        const interval = setInterval(() => {
+            if (currentHL < items.length - 1) {
+                items[currentHL].classList.remove('active');
+                currentHL++;
+                items[currentHL].classList.add('active');
+                items[currentHL].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                clearInterval(interval);
+                isVideoFinished = true;
+                updateQuizLockState();
+                setTimeout(() => {
+                    dashboardContainer.classList.remove('watching-video');
+                    showQuizInPlayer();
+                }, 1000);
+            }
+        }, 2000);
+    }
+
+    function showQuizInPlayer() {
+        const playerBox = document.getElementById('player-container');
+        const playerQuizContainer = document.getElementById('player-quiz-container');
+        const tabQuiz = document.getElementById('tab-quiz');
+
+        if (playerQuizContainer && tabQuiz) {
+            playerQuizContainer.innerHTML = '';
+            playerQuizContainer.appendChild(tabQuiz);
+            tabQuiz.style.display = 'block';
+            if (playerBox) playerBox.classList.add('quiz-mode');
+            playerQuizContainer.style.display = 'block';
+            startQuiz();
+        }
     }
 
     function updateQuizLockState() {
         const quizTab = document.getElementById('quiz-tab-handle');
-        const lockIcon = document.getElementById('quiz-lock-icon');
+        if (!quizTab) return;
 
         if (isVideoFinished) {
+            quizTab.style.display = 'block';
             quizTab.style.pointerEvents = 'auto';
             quizTab.style.opacity = '1';
-            lockIcon.className = 'fa-solid fa-lock-open';
         } else {
+            quizTab.style.display = 'none';
             quizTab.style.pointerEvents = 'none';
-            quizTab.style.opacity = '0.5';
-            lockIcon.className = 'fa-solid fa-lock';
         }
     }
 
@@ -218,8 +339,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const optionsContainer = document.getElementById('quiz-options');
     const currentQNumDisplay = document.getElementById('current-q-num');
 
+    const showAnswerBtn = document.getElementById('show-answer-btn');
+
     startQuizBtn.addEventListener('click', startQuiz);
     nextQBtn.addEventListener('click', nextQuestion);
+    showAnswerBtn.addEventListener('click', () => {
+        const qData = mockQuestions[currentQuestionIndex];
+        const options = document.querySelectorAll('.quiz-option');
+        options[qData.c].classList.add('correct');
+        showAnswerBtn.style.display = 'none';
+        nextQBtn.style.display = 'block';
+    });
 
     function startQuiz() {
         quizInitial.style.display = 'none';
@@ -244,6 +374,9 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', () => selectOption(i, btn));
             optionsContainer.appendChild(btn);
         });
+
+        // Show "Show Answer" button if needed
+        showAnswerBtn.style.display = 'block';
     }
 
     function selectOption(index, btn) {
@@ -264,6 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.quiz-option')[qData.c].classList.add('correct');
         }
 
+        showAnswerBtn.style.display = 'none';
         nextQBtn.style.display = 'block';
     }
 

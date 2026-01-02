@@ -99,10 +99,10 @@
                     <!-- Package 4: Board Exam Fast-Track -->
                     <div class="package-card">
                         <div class="package-img-container">
-                            <img src="assets/packages/Board Exam Fast-Track.png" alt="Board Exam Fast-Track"
+                            <img src="assets/packages/Board Exam Fast-Track.png" alt="RevisionBefore Board Exams"
                                 class="package-image">
                         </div>
-                        <h3 class="package-title">Board Exam Fast-Track <br><span
+                        <h3 class="package-title">Revision Before Board Exam <br><span
                                 style="font-size: 0.8em; font-weight: normal;">(Grades 10 & 12)</span></h3>
                         <p class="package-description"><strong>An intensive, results-driven revision program focused on
                                 high-yield topics and exam patterns.</strong> AI identifies weak areas to deliver
@@ -116,7 +116,7 @@
                             <img src="assets/packages/General Excellence Revision.png" alt="General Excellence Revision"
                                 class="package-image">
                         </div>
-                        <h3 class="package-title">General Excellence Revision <br><span
+                        <h3 class="package-title">Revision Before Final Exam <br><span
                                 style="font-size: 0.8em; font-weight: normal;">(All Grades)</span></h3>
                         <p class="package-description"><strong>Structured revision to reinforce concepts and improve
                                 retention.</strong> Reduces exam stress while building confidence through smart practice
@@ -205,30 +205,6 @@
                             learning and extensive practice tests.</p>
                         <button class="package-btn">Choose Plan</button>
                     </div>
-
-                    <!-- NEW Package 3: CUET & State CET -->
-                    <div class="package-card">
-                        <div class="package-img-container">
-                            <i class="fa-solid fa-book-open-reader package-icon-large"></i>
-                        </div>
-                        <h3 class="package-title">CUET & State Entrance Prep</h3>
-                        <p class="package-description"><strong>Comprehensive preparation for Central University Entrance
-                                Tests.</strong>
-                            Includes domain-specific subjects, general test prep, and language proficiency modules.</p>
-                        <button class="package-btn">Choose Plan</button>
-                    </div>
-
-                    <!-- NEW Package 4: KVPY & Scholarship -->
-                    <div class="package-card">
-                        <div class="package-img-container">
-                            <i class="fa-solid fa-medal package-icon-large"></i>
-                        </div>
-                        <h3 class="package-title">KVPY & Scholarship Prep</h3>
-                        <p class="package-description"><strong>Dedicated module for research fellowships.</strong>
-                            Targeted preparation for KVPY, NTSE, and other prestigious scholarship exams with
-                            research-oriented study material.</p>
-                        <button class="package-btn">Choose Plan</button>
-                    </div>
                 </div>
             </div>
         </section>
@@ -284,24 +260,57 @@
 
             <div class="dashboard-container">
                 <!-- Sidebar -->
-                <aside class="subject-sidebar">
-                    <h3 class="sidebar-title">Your Subjects</h3>
-                    <ul class="subject-nav-list" id="dashboard-subject-list">
+                <aside class="subject-sidebar" id="subject-sidebar">
+                    <h3 class="sidebar-title">Curriculum</h3>
+
+                    <div class="sidebar-section-title">Chapters</div>
+                    <ul class="chapter-list" id="curriculum-list">
+                        <!-- Chapter items will be injected here -->
+                        <li class="chapter-item active"><i class="fa-solid fa-circle-play"></i> Introduction</li>
+                        <li class="chapter-item locked"><i class="fa-solid fa-lock"></i> Advanced Concepts</li>
+                    </ul>
+
+                    <div class="sidebar-section-title">Your Subjects</div>
+                    <ul class="subject-nav-list" id="dashboard-subject-list" style="margin-top: 10px;">
                         <!-- Dynamic items -->
                     </ul>
                 </aside>
 
                 <!-- Main Content Area -->
                 <main class="content-viewer">
-                    <div id="active-content-title" style="margin-bottom: 20px;">
+                    <div id="active-content-title"
+                        style="margin-bottom: 20px; display: flex; align-items: center; gap: 20px;">
+                        <button class="sidebar-toggle-btn" id="sidebar-toggle" title="Toggle Curriculum">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </button>
                         <h3 style="color: #003366; font-size: 1.5rem;">Mathematics - Chapter 1: Introduction</h3>
                     </div>
 
-                    <div class="video-player-box">
-                        <div id="video-placeholder"
-                            style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; background: #1a1a1a; flex-direction: column; gap: 15px;">
-                            <i class="fa-solid fa-play" style="font-size: 3rem; color: var(--primary-orange);"></i>
-                            <span>Course Video Content</span>
+                    <div class="video-content-layout">
+                        <div class="video-player-box" id="player-container">
+                            <video id="main-course-video" class="course-video" playsinline controls>
+                                <source src="assets/EduAitutors-video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-controls-overlay" id="video-overlay">
+                                <i class="fa-solid fa-play" id="play-icon-main"></i>
+                            </div>
+                            <div id="player-quiz-container"
+                                style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 50; overflow-y: auto; padding: 25px;">
+                                <!-- Quiz will be moved here dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="video-related-content" id="video-related-content">
+                            <h4 class="v-content-title">Script AutoScrolling</h4>
+                            <ul class="v-content-list" id="v-content-list">
+                                <li class="v-content-item active" data-time="0">Introduction</li>
+                                <li class="v-content-item" data-time="30">Core Principles</li>
+                                <li class="v-content-item" data-time="60">Detailed Examples</li>
+                                <li class="v-content-item" data-time="90">Common Pitfalls</li>
+                                <li class="v-content-item" data-time="120">Summary</li>
+                                <li class="v-content-item" data-time="150">Final Thoughts</li>
+                            </ul>
                         </div>
                     </div>
 
@@ -309,9 +318,8 @@
                         <div class="content-tab active" data-tab="video">Video Lecture</div>
                         <div class="content-tab" data-tab="resources">Resources</div>
                         <div class="content-tab" data-tab="notes">My Notes</div>
-                        <div class="content-tab" data-tab="quiz" id="quiz-tab-handle">Module Quiz <i
-                                class="fa-solid fa-lock" id="quiz-lock-icon"
-                                style="margin-left: 5px; font-size: 0.8em;"></i></div>
+                        <div class="content-tab" data-tab="quiz" id="quiz-tab-handle" style="display: none;">Module Quiz
+                        </div>
                     </div>
 
                     <div class="tab-content" id="tab-video">
@@ -374,8 +382,9 @@
                                     <!-- Options will be injected here -->
                                 </div>
                             </div>
-                            <div style="display: flex; justify-content: space-between;">
-                                <div></div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <button class="show-answer-btn" id="show-answer-btn" style="display: none;">Show
+                                    Answer</button>
                                 <button class="confirm-buy-btn" id="next-q-btn"
                                     style="max-width: 150px; display: none;">Next Question</button>
                             </div>
